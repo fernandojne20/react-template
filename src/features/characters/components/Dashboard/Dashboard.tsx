@@ -6,6 +6,7 @@ import { SearchBox } from '../../../../components/ui/SearchBox/SearchBox';
 import { useState } from 'react';
 import { useDebouce } from '../../../../hooks/useDebounce';
 import { AddCharacterForm } from '../AddCharacterForm/AddCharacterForm';
+import { useSearchTerm } from '../../../../context/SearchTerm/useSearchTerm';
 
 export const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -20,6 +21,8 @@ export const Dashboard = () => {
   const debouncedValue = useDebouce(searchTerm.toLowerCase(), 300);
 
   const characters = filteredCharacters(debouncedValue.toLowerCase());
+  const { setTerm } = useSearchTerm();
+  setTerm(searchTerm);
 
   return (
     <>
