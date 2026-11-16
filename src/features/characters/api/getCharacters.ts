@@ -9,12 +9,12 @@ export async function getCharacters(
 ): Promise<CharacterResponse> {
   const res = await fetch(
     `${BASE_URL}/characters?page=${page}&limit=${LIMIT}`,
-    {
-      signal: abortSignal,
-    },
+    { signal: abortSignal },
   );
 
-  const charactersRes: CharacterResponse = await res.json();
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
 
-  return charactersRes;
+  return res.json();
 }

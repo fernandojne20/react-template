@@ -14,7 +14,7 @@ export const useCharacters = () => {
     getCharacters(page, abortController.signal)
       .then((cr) => {
         setCharacters((prev) => [...prev, ...cr.items]);
-        if (cr.meta.currentPage === cr.meta.totalPages) {
+        if (cr.meta.currentPage >= cr.meta.totalPages) {
           setHasMore(false);
         }
       })
@@ -32,7 +32,16 @@ export const useCharacters = () => {
     return () => abortController.abort();
   }, [page]);
 
-  const loadMore = useCallback(() => setPage((p) => p + 1), []);
+  const loadMore = useCallback(() => {
+    // loading se activa aquí (no dentro del effect) para que el observer
+    // quede deshabilitado de inmediato y no dispare dos páginas seguidas
+    setLoading(true);
+    setPage((p) => p + 1);
+  }, []);
+
+  const addCharacter = useCallback((character: Character) => {
+    setCharacters((prev) => [character, ...prev]);
+  }, []);
 
   return {
     loading,
@@ -40,5 +49,6 @@ export const useCharacters = () => {
     characters,
     hasMore,
     loadMore,
+    addCharacter,
   };
 };

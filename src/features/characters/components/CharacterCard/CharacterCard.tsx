@@ -17,15 +17,15 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
         {character.race} - {character.gender}
       </span>
       <div>
-        <span>Base Ki:</span>
+        <span>Base Ki: </span>
         <span>{character.ki}</span>
       </div>
       <div>
-        <span>Total Ki:</span>
+        <span>Total Ki: </span>
         <span>{character.maxKi}</span>
       </div>
       <div>
-        <span>Affiliation</span>
+        <span>Affiliation: </span>
         <span>{character.affiliation}</span>
       </div>
     </article>

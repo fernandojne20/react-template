@@ -1,0 +1,35 @@
+.create-character-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e4e9ee;
+  border-radius: 16px;
+  background: #21205b;
+}
+
+.create-character-form h2,
+.create-character-form textarea,
+.create-character-form button {
+  grid-column: 1 / -1;
+}
+
+.create-character-form h2 {
+  margin: 0;
+}
+
+.create-character-form input,
+.create-character-form textarea {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e4e9ee;
+  font: inherit;
+}
+
+.create-character-form button {
+  justify-self: start;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
