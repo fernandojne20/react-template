@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getCharacters } from '../characters/api/getCharacters';
-import type { Character } from '../characters/types/character';
+import { getCharacters } from '../api/getCharacters';
+import type { Character } from '../types/character';
 
 export const useCharacters = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -34,11 +34,24 @@ export const useCharacters = () => {
 
   const loadMore = useCallback(() => setPage((p) => p + 1), []);
 
+  const filteredCharacters = useCallback(
+    (searchTerm: string) =>
+      characters.filter((character) =>
+        character.name.toLowerCase().includes(searchTerm),
+      ),
+    [characters],
+  );
+
+  const addCharacter = (item: Character) => {
+    setCharacters((prev) => [{ ...item }, ...prev]);
+  };
+
   return {
     loading,
     error,
-    characters,
+    filteredCharacters,
     hasMore,
     loadMore,
+    addCharacter,
   };
 };

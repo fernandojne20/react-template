@@ -14,7 +14,7 @@ export async function getCharacters(
     },
   );
 
-  const charactersRes: CharacterResponse = await res.json();
+  if (!res.ok) throw new Error(`Error ${res.status}`);
 
-  return charactersRes;
+  return res.json();
 }
