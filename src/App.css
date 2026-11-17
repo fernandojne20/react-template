@@ -182,3 +182,16 @@
     border-right-color: var(--border);
   }
 }
+
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-nav button[aria-pressed='true'] {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
